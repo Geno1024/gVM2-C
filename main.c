@@ -8,6 +8,7 @@ int main()
     mwrite1(memory, 1, 0x41);
     mwrite1(memory, 2, 0x42);
     mwrite1(memory, 3, 0x43);
-    printf("%x", mread4(memory, 0));
+//    printf("%x", mread4(memory, 0));
+    mdump(memory, 0, 0x11);
     return 0;
 }

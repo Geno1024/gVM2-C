@@ -5,24 +5,29 @@
 #ifndef GVM2_C_MEMORY_H
 #define GVM2_C_MEMORY_H
 
+#include "../gutils.h"
+
 struct memory;
 typedef struct memory *Memory;
 
-Memory new_memory(long size);
+Memory new_memory(ulong size);
 
 // read 1 byte
-unsigned char mread1(Memory mem, long pos);
+unsigned char mread1(Memory mem, ulong pos);
 // write 1 byte
-void mwrite1(Memory mem, long pos, unsigned char data);
+void mwrite1(Memory mem, ulong pos, uchar data);
 
 // read 4 bytes
-unsigned int mread4(Memory mem, long pos);
+unsigned int mread4(Memory mem, ulong pos);
 // write 4 bytes
-void mwrite4(Memory mem, long pos, unsigned int data);
+void mwrite4(Memory mem, ulong pos, uint data);
 
 // read 8 bytes
-unsigned long mread8(Memory mem, long pos);
+unsigned long mread8(Memory mem, ulong pos);
 // write 8 bytes
-void mwrite8(Memory mem, long pos, unsigned long data);
+void mwrite8(Memory mem, ulong pos, ulong data);
+
+// dump a range of memory
+void mdump(Memory mem, ulong start, ulong end);
 
 #endif //GVM2_C_MEMORY_H
