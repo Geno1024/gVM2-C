@@ -19,7 +19,7 @@ Memory new_memory(ulong size)
     return mem;
 }
 
-unsigned char mread1(Memory mem, ulong pos)
+uchar mread1(Memory mem, ulong pos)
 {
     return mem->memory[pos];
 }
@@ -29,7 +29,7 @@ void mwrite1(Memory mem, ulong pos, uchar data)
     mem->memory[pos] = data;
 }
 
-unsigned int mread4(Memory mem, ulong pos)
+uint mread4(Memory mem, ulong pos)
 {
     return
     (mem->memory[pos    ] << 24) +
@@ -46,7 +46,7 @@ void mwrite4(Memory mem, ulong pos, uint data)
     mem->memory[pos + 3] = (uchar) (data      );
 }
 
-unsigned long mread8(Memory mem, ulong pos)
+ulong mread8(Memory mem, ulong pos)
 {
     return
     ((ulong) mem->memory[pos    ] << 56) +
@@ -77,25 +77,25 @@ void mdump(Memory mem, ulong start, ulong end)
     printf("----------------:  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f\n");
 
     // first line
-    unsigned long startLine = start & 0x7ffffffffffffff0;
-    unsigned long endLine = end & 0x7ffffffffffffff0;
+    ulong startLine = start & 0x7ffffffffffffff0;
+    ulong endLine = end & 0x7ffffffffffffff0;
 
     printf("%016lx:", startLine);
-    for (unsigned long i = startLine; i < start; i++) printf("   ");
+    for (ulong i = startLine; i < start; i++) printf("   ");
 
-    for (unsigned long i = start; i < min(startLine + 16, end + 1); i++) printf(" %02x", mread1(mem, i));
+    for (ulong i = start; i < min(startLine + 16, end + 1); i++) printf(" %02x", mread1(mem, i));
 
     // last line, if exists
     if (startLine - endLine)
     {
-        for (unsigned long i = end; i < startLine + 16; i++) printf(" %02x", mread1(mem, i));
-        for (unsigned long i = startLine + 16; i < endLine; i++)
+        for (ulong i = end; i < startLine + 16; i++) printf(" %02x", mread1(mem, i));
+        for (ulong i = startLine + 16; i < endLine; i++)
         {
             if (!(i & 15)) printf("\n%016lx:", i);
             printf(" %02x", mread1(mem, i));
         }
         printf("\n%016lx:", endLine);
-        for (unsigned long i = endLine; i <= end; i++) printf(" %02x", mread1(mem, i));
+        for (ulong i = endLine; i <= end; i++) printf(" %02x", mread1(mem, i));
     }
     printf("\n");
 };

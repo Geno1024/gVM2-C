@@ -13,17 +13,17 @@ typedef struct memory *Memory;
 Memory new_memory(ulong size);
 
 // read 1 byte
-unsigned char mread1(Memory mem, ulong pos);
+uchar mread1(Memory mem, ulong pos);
 // write 1 byte
 void mwrite1(Memory mem, ulong pos, uchar data);
 
 // read 4 bytes
-unsigned int mread4(Memory mem, ulong pos);
+uint mread4(Memory mem, ulong pos);
 // write 4 bytes
 void mwrite4(Memory mem, ulong pos, uint data);
 
 // read 8 bytes
-unsigned long mread8(Memory mem, ulong pos);
+ulong mread8(Memory mem, ulong pos);
 // write 8 bytes
 void mwrite8(Memory mem, ulong pos, ulong data);
 
